@@ -1,0 +1,6 @@
+@RmqMTDemo.WebApii_HostAddress = http://localhost:5153
+
+GET {{RmqMTDemo.WebApii_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
