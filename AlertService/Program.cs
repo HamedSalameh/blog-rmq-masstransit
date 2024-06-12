@@ -1,4 +1,4 @@
-using PatientDataService;
+using AlertService;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();

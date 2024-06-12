@@ -1,4 +1,4 @@
-namespace PatientDataService
+namespace AlertService
 {
     public class Worker : BackgroundService
     {
