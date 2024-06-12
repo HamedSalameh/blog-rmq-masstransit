@@ -1,7 +1,7 @@
 ﻿using Common;
 using MassTransit;
 
-public partial class TelemetryDataProcessor(ILogger<TelemetryDataProcessor> logger, IAnomalyDetector anomalyDetector, IBus bus) : ITelemetryDataProcessor
+public class TelemetryDataProcessor(ILogger<TelemetryDataProcessor> logger, IAnomalyDetector anomalyDetector, IBus bus) : ITelemetryDataProcessor
 {
     private readonly ILogger<TelemetryDataProcessor> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     private readonly IAnomalyDetector _anomalyDetector = anomalyDetector ?? throw new ArgumentNullException(nameof(anomalyDetector));

@@ -1,6 +1,6 @@
 ﻿using Common;
 
-public partial class TelemetryDataProcessor(ILogger<TelemetryDataProcessor> logger)
+namespace TelemetryService
 {
     public class AnomalyDetector : IAnomalyDetector
     {
