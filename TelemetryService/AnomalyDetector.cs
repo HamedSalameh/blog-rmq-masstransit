@@ -1,12 +1,19 @@
 ﻿using Common;
+using TelemetryService;
 
-namespace TelemetryService
+public class AnomalyDetector : IAnomalyDetector
 {
-    public class AnomalyDetector : IAnomalyDetector
+    private readonly ILogger<AnomalyDetector> _logger;
+
+    public AnomalyDetector(ILogger<AnomalyDetector> logger)
     {
-        public Task<bool> DetectAnomaliesAsync(TelemetryDataMessage message)
-        {
-            throw new NotImplementedException();
-        }
+        _logger = logger;
+    }
+
+    public async Task<Anomaly> DetectAnomaliesAsync(TelemetryDataMessage message)
+    {
+        await Task.Delay(500);  // fake work ...
+
+        return await Task.FromResult<Anomaly>(null!);
     }
 }

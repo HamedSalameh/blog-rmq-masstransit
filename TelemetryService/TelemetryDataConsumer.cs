@@ -22,20 +22,12 @@ public sealed class TelemetryDataConsumer : IConsumer<TelemetryDataMessage>
 
         validateMessage(context);
 
-        await _telemtryDataProcessor.Process(context.Message);
+        var telemetryData = context.Message;
+        await _telemtryDataProcessor.Process(telemetryData);
 
         if (_logger.IsEnabled(LogLevel.Information))
         {
             _logger.LogInformation("Telemetry data message processed: {telemetryDataMessage}", context.Message);
-        }
-
-        var telemetryData = context.Message;
-        if (telemetryData != null)
-        {
-            await _telemtryDataProcessor.Process(telemetryData);
-
-            // publish audit event
-            await context.Publish(new AuditEvent(DateTime.Now, AuditAction.Processed, telemetryData.DeviceId));
         }
     }
 
@@ -51,7 +43,7 @@ public sealed class TelemetryDataConsumer : IConsumer<TelemetryDataMessage>
         // in case of message validation failure, publish the message to a dead-letter queue
         if (string.IsNullOrWhiteSpace(context.Message.DeviceId) ||
             context.Message.Timestamp == default ||
-            context.Message.SensorData == null)
+            context.Message.WaterMeasurementData == null)
         {
             // publish the letter to the dead letter exchange
             _logger.LogWarning("Invalid telemetry data: {telemetryDataMessage}", context.Message);

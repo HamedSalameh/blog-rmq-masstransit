@@ -3,7 +3,7 @@ using MassTransit;
 
 namespace AnomalyHandlingService
 {
-    public class AnomalyDataConsumer : IConsumer<AnomalyDataMessage>
+    public class AnomalyDataConsumer : IConsumer<Anomaly>
     {
         private readonly ILogger<AnomalyDataConsumer> _logger;
         private readonly IAnomalyDataHandler _anomalyDataHandler;
@@ -14,7 +14,7 @@ namespace AnomalyHandlingService
             _anomalyDataHandler = anomalyDataHandler ?? throw new ArgumentNullException(nameof(anomalyDataHandler));
         }
 
-        public async Task Consume(ConsumeContext<AnomalyDataMessage> context)
+        public async Task Consume(ConsumeContext<Anomaly> context)
         {
             if (_logger.IsEnabled(LogLevel.Debug))
             {
@@ -23,9 +23,6 @@ namespace AnomalyHandlingService
 
             // Process the anomaly data
             await _anomalyDataHandler.HandleAsync(context.Message);
-
-            // publish audit event
-            await context.Publish(new AuditEvent(DateTime.Now, AuditAction.Processed, context.Message.DeviceId));
 
             if (_logger.IsEnabled(LogLevel.Information))
             {

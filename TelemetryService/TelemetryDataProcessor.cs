@@ -1,5 +1,6 @@
 ﻿using Common;
 using MassTransit;
+using TelemetryService;
 
 public class TelemetryDataProcessor(ILogger<TelemetryDataProcessor> logger, IAnomalyDetector anomalyDetector, IBus bus) : ITelemetryDataProcessor
 {
@@ -15,17 +16,21 @@ public class TelemetryDataProcessor(ILogger<TelemetryDataProcessor> logger, IAno
         }
 
         // detect anomalies in the telemetry data
-        var isAnomalyDetected = await _anomalyDetector.DetectAnomaliesAsync(message);
+        var anomaly = await _anomalyDetector.DetectAnomaliesAsync(message);
 
-        if (isAnomalyDetected)
+        if (anomaly != null)
         {
-            // publish anomaly data message
-            //await _bus.Publish(new AnomalyDataMessage(message.DeviceId, message.Timestamp)
+            _logger.LogWarning("Anomaly detected: {anomaly}", anomaly);
 
-            _logger.LogWarning("Anomaly detected in telemetry data: {telemetryDataMessage}", message);
+            // publish the anomaly to the message broker
+            await _bus.Publish(anomaly);
         }
+        else
+        {
+            // do some work here to process the telemetry data message
+            await Task.Delay(500);  // fake work ...
 
-        // Do some work here for processing telemetry data messages
-        await Task.Delay(500);  // fake work ...
+            _logger.LogInformation("Telemetry data message processed: {telemetryDataMessage}", message);
+        }
     }
 }
