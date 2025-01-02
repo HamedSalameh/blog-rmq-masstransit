@@ -14,11 +14,11 @@ namespace AnomalyHandlingService
         public async Task HandleAsync(Anomaly message)
         {
             // Do some work here to handle the anomaly
-            _logger.LogInformation("Handling anomaly: {anomaly}", message);
+            _logger.LogInformation("Handling anomaly: {anomaly}", message.ToString());
 
-            await Task.Delay(500);  // fake work ...
+            await Task.Delay(200);  // fake work ...
 
-            _logger.LogInformation("Anomaly handled: {anomaly}", message);
+            _logger.LogInformation("Anomaly handled: {anomaly}", message.ToString());
         }
     }
 }

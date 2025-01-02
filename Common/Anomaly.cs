@@ -2,11 +2,13 @@
 {
     public class Anomaly
     {
+
         public Anomaly(string anomalyType, string anomalyDetails, TelemetryDataMessage originalTelemetryData)
         {
             AnomalyType = anomalyType;
             AnomalyDetails = anomalyDetails;
             OriginalTelemetryData = originalTelemetryData;
+
         }
 
         // Type or description of the anomaly detected
@@ -17,5 +19,10 @@
 
         // Optional: Original telemetry data that triggered the anomaly detection
         public TelemetryDataMessage OriginalTelemetryData { get; set; }
+
+        public override string ToString()
+        {
+            return $"AnomalyType: {AnomalyType}, AnomalyDetails: {AnomalyDetails}, OriginalTelemetryData: {OriginalTelemetryData}";
+        }
     }
 }

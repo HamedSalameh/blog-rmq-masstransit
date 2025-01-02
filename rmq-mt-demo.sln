@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuditServiceWorker", "AuditServiceWorker\AuditServiceWorker.csproj", "{4258F8CB-A35D-493B-ADBF-C48A92F76087}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{EC773E05-D1A9-4C19-8A4B-10FF09001A05}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnomalyHandlingService", "AnomalyHandlingService\AnomalyHandlingService.csproj", "{DD1C0415-E8C2-44DC-AAE1-B930E462A0EB}"
@@ -13,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelemetryService", "Telemet
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlertService", "AlertService\AlertService.csproj", "{E364FEDC-12C0-480B-AF87-C8893833FF35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataInjectorSim", "DataInjectorSim\DataInjectorSim.csproj", "{B0C9B807-0AA2-47AF-B927-C1E085031183}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataInjectorSim", "DataInjectorSim\DataInjectorSim.csproj", "{B0C9B807-0AA2-47AF-B927-C1E085031183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4258F8CB-A35D-493B-ADBF-C48A92F76087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4258F8CB-A35D-493B-ADBF-C48A92F76087}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4258F8CB-A35D-493B-ADBF-C48A92F76087}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4258F8CB-A35D-493B-ADBF-C48A92F76087}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC773E05-D1A9-4C19-8A4B-10FF09001A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC773E05-D1A9-4C19-8A4B-10FF09001A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC773E05-D1A9-4C19-8A4B-10FF09001A05}.Release|Any CPU.ActiveCfg = Release|Any CPU

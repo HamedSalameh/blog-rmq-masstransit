@@ -7,5 +7,10 @@
         public double Temperature { get; set; } // in Celsius
         public double NitrateConcentration { get; set; } // in mg/L
         public string DataQuality { get; set; } // High, Medium, Low
+
+        public override string ToString()
+        {
+            return $"WaterLevel: {WaterLevel}, pHLevel: {pHLevel}, Temperature: {Temperature}, NitrateConcentration: {NitrateConcentration}, DataQuality: {DataQuality}";
+        }
     }
 }

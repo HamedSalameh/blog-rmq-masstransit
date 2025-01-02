@@ -66,7 +66,7 @@ namespace DataInjectorSim
             };
 
             // Occasionally inject anomalies
-            if (random.Next(0, 10) < 2) // 20% chance to inject an anomaly
+            if (random.Next(0, 10) < 3) // 30% chance to inject an anomaly
             {
                 waterMeasurementData = InjectAnomaly(waterMeasurementData);
                 waterMeasurementData.DataQuality = "Low";
@@ -83,16 +83,20 @@ namespace DataInjectorSim
             switch (anomalyType)
             {
                 case 0:
-                    waterMeasurementData.WaterLevel = random.NextDouble() * 100; // 0 to 100 cm
+                    // Inject an anomaly for WaterLevel (e.g., negative or excessively high value)
+                    waterMeasurementData.WaterLevel = random.NextDouble() > 0.5 ? -random.NextDouble() * 100 : random.NextDouble() * 200;
                     break;
                 case 1:
-                    waterMeasurementData.pHLevel = Math.Round(random.NextDouble() * 14, 2); // 0 to 14 pH
+                    // Inject an anomaly for pHLevel (e.g., negative or above 14)
+                    waterMeasurementData.pHLevel = random.NextDouble() > 0.5 ? -Math.Round(random.NextDouble() * 14, 2) : Math.Round(random.NextDouble() * 28, 2);
                     break;
                 case 2:
-                    waterMeasurementData.Temperature = Math.Round(random.NextDouble() * 40, 2); // 0 to 40 °C
+                    // Inject an anomaly for Temperature (e.g., negative or excessively high value)
+                    waterMeasurementData.Temperature = random.NextDouble() > 0.5 ? -Math.Round(random.NextDouble() * 40, 2) : Math.Round(random.NextDouble() * 80, 2);
                     break;
                 case 3:
-                    waterMeasurementData.NitrateConcentration = Math.Round(random.NextDouble() * 50, 2); // 0 to 50 mg/L
+                    // Inject an anomaly for NitrateConcentration (e.g., negative or excessively high value)
+                    waterMeasurementData.NitrateConcentration = random.NextDouble() > 0.5 ? -Math.Round(random.NextDouble() * 50, 2) : Math.Round(random.NextDouble() * 100, 2);
                     break;
             }
 

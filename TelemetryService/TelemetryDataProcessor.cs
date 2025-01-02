@@ -12,7 +12,7 @@ public class TelemetryDataProcessor(ILogger<TelemetryDataProcessor> logger, IAno
     {
         if (_logger.IsEnabled(LogLevel.Information))
         {
-            _logger.LogInformation("Processing telemetry data message: {telemetryDataMessage}", message);
+            _logger.LogInformation("Processing telemetry data message: {telemetryDataMessage}", message.ToString());
         }
 
         // detect anomalies in the telemetry data
@@ -20,7 +20,7 @@ public class TelemetryDataProcessor(ILogger<TelemetryDataProcessor> logger, IAno
 
         if (anomaly != null)
         {
-            _logger.LogWarning("Anomaly detected: {anomaly}", anomaly);
+            _logger.LogWarning("Anomaly detected: {anomaly}", anomaly.AnomalyType);
 
             // publish the anomaly to the message broker
             await _bus.Publish(anomaly);
