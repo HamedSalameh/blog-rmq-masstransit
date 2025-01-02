@@ -20,10 +20,12 @@ public sealed class TelemetryDataConsumer : IConsumer<TelemetryDataMessage>
             _logger.LogDebug("Consuming telemetry data message: {telemetryDataMessage}", context.Message);
         }
 
-        validateMessage(context);
+        if (!await ValidateMessageAsync(context))
+        {
+            return;
+        }
 
-        var telemetryData = context.Message;
-        await _telemtryDataProcessor.Process(telemetryData);
+        await _telemtryDataProcessor.Process(context.Message);
 
         if (_logger.IsEnabled(LogLevel.Information))
         {
@@ -31,26 +33,31 @@ public sealed class TelemetryDataConsumer : IConsumer<TelemetryDataMessage>
         }
     }
 
-    private void validateMessage(ConsumeContext<TelemetryDataMessage> context)
+    private async Task<bool> ValidateMessageAsync(ConsumeContext<TelemetryDataMessage> context)
     {
-        // Some basic message validation
         if (context.Message == null)
         {
-            _logger.LogError("Invalid telemetry data message: {telemetryDataMessage}", context.Message);
-            return;
+            _logger.LogError("Received null telemetry data message.");
+            await context.Publish(new DeadLetterEvent(
+                Timestamp: DateTime.UtcNow,
+                Reason: "Null message",
+                OriginalMessage: null));
+            return false;
         }
 
-        // in case of message validation failure, publish the message to a dead-letter queue
         if (string.IsNullOrWhiteSpace(context.Message.DeviceId) ||
             context.Message.Timestamp == default ||
             context.Message.WaterMeasurementData == null)
         {
-            // publish the letter to the dead letter exchange
-            _logger.LogWarning("Invalid telemetry data: {telemetryDataMessage}", context.Message);
-
-            // await context.Publish(new DeadLetterEvent(DateTime.Now, "Invalid telemetry data message", context.Message);
-
-            return;
+            _logger.LogWarning("Invalid telemetry data for DeviceId: {DeviceId} at {Timestamp}",
+                context.Message.DeviceId, context.Message.Timestamp);
+            await context.Publish(new DeadLetterEvent(
+                Timestamp: DateTime.UtcNow,
+                Reason: "Invalid telemetry data",
+                OriginalMessage: context.Message));
+            return false;
         }
+
+        return true;
     }
 }
