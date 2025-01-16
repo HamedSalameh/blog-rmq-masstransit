@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnomalyHandlingService", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelemetryService", "TelemetryService\TelemetryService.csproj", "{D4CBDB42-2A6B-496A-922D-AC5C52F5EE1B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlertService", "AlertService\AlertService.csproj", "{E364FEDC-12C0-480B-AF87-C8893833FF35}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataInjectorSim", "DataInjectorSim\DataInjectorSim.csproj", "{B0C9B807-0AA2-47AF-B927-C1E085031183}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{D4CBDB42-2A6B-496A-922D-AC5C52F5EE1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4CBDB42-2A6B-496A-922D-AC5C52F5EE1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4CBDB42-2A6B-496A-922D-AC5C52F5EE1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E364FEDC-12C0-480B-AF87-C8893833FF35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E364FEDC-12C0-480B-AF87-C8893833FF35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E364FEDC-12C0-480B-AF87-C8893833FF35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E364FEDC-12C0-480B-AF87-C8893833FF35}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0C9B807-0AA2-47AF-B927-C1E085031183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0C9B807-0AA2-47AF-B927-C1E085031183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0C9B807-0AA2-47AF-B927-C1E085031183}.Release|Any CPU.ActiveCfg = Release|Any CPU
